@@ -1,0 +1,23 @@
+{
+  "Okay": "4.5.2",
+  "version": "1.0.0",
+  "moduleName": "Invoice Payment",
+  "vendor": {
+    "email": "devsviat@proton.me",
+    "site": "https://github.com/devSviat"
+  },
+  "modifications": {
+    "backend": [
+      {
+        "file": "order.tpl",
+        "changes": [
+          {
+            "find": "name=\"email\"",
+            "closestFind": "mb-1",
+            "appendAfter": "order_invoice_payment_contact_fields.tpl"
+          }
+        ]
+      }
+    ]
+  }
+}

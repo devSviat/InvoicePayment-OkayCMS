@@ -1,0 +1,54 @@
+.sviat_invoice_payment {
+    margin-bottom: 1.5rem;
+}
+
+.sviat_invoice_payment__detail:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+.sviat_invoice_payment__label {
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.sviat_invoice_payment__value {
+    font-weight: 600;
+}
+
+.sviat_invoice_payment_cart_fields {
+    margin-top: 1rem;
+}
+
+.sviat_invoice_payment_order_view .sviat_invoice_payment {
+    margin-bottom: 1rem;
+}
+
+.sviat_invoice_payment_order_buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.sviat_invoice_payment_order_edit {
+    margin-top: 0.5rem;
+}
+
+.sviat_invoice_payment_order_edit .f_row {
+    margin-bottom: 1rem;
+}
+
+.sviat_invoice_payment_order_actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.sviat_invoice_payment_order_wrap {
+    margin-bottom: 1rem;
+}
+
+.sviat_invoice_payment_order_buttons.order_payment__form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}

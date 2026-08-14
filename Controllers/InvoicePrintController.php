@@ -149,24 +149,32 @@ class InvoicePrintController extends AbstractController
     {
         $amount = round((float) $amount, 2);
         $whole = (int) floor($amount);
-        $cents = (int) round(($amount - $whole) * 100);
+        $cents = (int) round(round(($amount - $whole) * 100, 6));
 
         if ($whole === 0 && $cents === 0) {
             return 'Нуль гривень 00 копійок';
         }
 
         $grn = $this->fullNumberToWordsUa($whole);
+        // Сума менша за гривню: без цього рядок починався б із пробілу
+        // ("  гривень 05 копійок"), бо словесна частина порожня.
+        if ($grn === '') {
+            $grn = 'нуль';
+        }
         $grn = $this->pluralizeUa($whole, $grn, 'гривня', 'гривні', 'гривень');
         $cop = str_pad((string) $cents, 2, '0', STR_PAD_LEFT);
-        return $grn . ' ' . $cop . ' копійок';
+        return $grn . ' ' . $this->pluralizeUa($cents, $cop, 'копійка', 'копійки', 'копійок');
     }
 
     private function fullNumberToWordsUa(int $n): string
     {
         $h = [0 => '', 1 => 'сто', 2 => 'двісті', 3 => 'триста', 4 => 'чотириста', 5 => 'п\'ятсот', 6 => 'шістсот', 7 => 'сімсот', 8 => 'вісімсот', 9 => 'дев\'ятсот'];
         $t = [0 => '', 10 => 'десять', 11 => 'одинадцять', 12 => 'дванадцять', 13 => 'тринадцять', 14 => 'чотирнадцять', 15 => 'п\'ятнадцять', 16 => 'шістнадцять', 17 => 'сімнадцять', 18 => 'вісімнадцять', 19 => 'дев\'ятнадцять', 2 => 'двадцять', 3 => 'тридцять', 4 => 'сорок', 5 => 'п\'ятдесят', 6 => 'шістдесят', 7 => 'сімдесят', 8 => 'вісімдесят', 9 => 'дев\'яносто'];
+        // Жіночий рід — для гривні й тисячі, чоловічий — для мільйона.
         $u = [0 => '', 1 => 'одна', 2 => 'дві', 3 => 'три', 4 => 'чотири', 5 => 'п\'ять', 6 => 'шість', 7 => 'сім', 8 => 'вісім', 9 => 'дев\'ять'];
-        $seg = function (int $num) use ($h, $t, $u) {
+        $uMasculine = [1 => 'один', 2 => 'два'] + $u;
+        $seg = function (int $num, bool $masculine = false) use ($h, $t, $u, $uMasculine) {
+            $units = $masculine ? $uMasculine : $u;
             $out = [];
             if ($num >= 100) {
                 $out[] = $h[(int) floor($num / 100)];
@@ -180,7 +188,7 @@ class InvoicePrintController extends AbstractController
                 $num = 0;
             }
             if ($num > 0) {
-                $out[] = $u[$num];
+                $out[] = $units[$num];
             }
             return trim(implode(' ', $out));
         };
@@ -188,7 +196,7 @@ class InvoicePrintController extends AbstractController
         $parts = [];
         if ($n >= 1_000_000) {
             $mil = (int) floor($n / 1_000_000);
-            $parts[] = $this->pluralizeUa($mil, $seg($mil), 'мільйон', 'мільйони', 'мільйонів');
+            $parts[] = $this->pluralizeUa($mil, $seg($mil, true), 'мільйон', 'мільйони', 'мільйонів');
             $n = $n % 1_000_000;
         }
         if ($n >= 1_000) {

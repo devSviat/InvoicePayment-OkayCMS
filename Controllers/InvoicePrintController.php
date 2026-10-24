@@ -12,7 +12,7 @@ use Okay\Modules\Sviat\InvoicePayment\Init\Init;
 
 class InvoicePrintController extends AbstractController
 {
-    private const MODULE_NAME = 'Sviat/InvoicePayment';
+    private const string MODULE_NAME = 'Sviat/InvoicePayment';
 
     public function render(
         OrdersEntity $ordersEntity,

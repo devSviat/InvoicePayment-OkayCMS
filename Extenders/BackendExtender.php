@@ -13,7 +13,7 @@ use Okay\Modules\Sviat\InvoicePayment\Entities\InvoicePaymentDataEntity;
 
 class BackendExtender implements ExtensionInterface
 {
-    private const MODULE_NAME = 'Sviat/InvoicePayment';
+    private const string MODULE_NAME = 'Sviat/InvoicePayment';
 
     private EntityFactory $entityFactory;
     private Design $design;

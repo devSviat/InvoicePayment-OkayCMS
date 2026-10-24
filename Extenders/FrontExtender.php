@@ -15,7 +15,7 @@ use Okay\Modules\Sviat\InvoicePayment\Entities\InvoicePaymentDataEntity;
 
 class FrontExtender implements ExtensionInterface
 {
-    private const MODULE_NAME = 'Sviat/InvoicePayment';
+    private const string MODULE_NAME = 'Sviat/InvoicePayment';
 
     private EntityFactory $entityFactory;
     private Request $request;

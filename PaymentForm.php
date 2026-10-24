@@ -12,7 +12,7 @@ use Okay\Modules\Sviat\InvoicePayment\Entities\InvoicePaymentDataEntity;
 
 class PaymentForm extends AbstractModule implements PaymentFormInterface
 {
-    private const MODULE_NAME = 'Sviat/InvoicePayment';
+    private const string MODULE_NAME = 'Sviat/InvoicePayment';
 
     private EntityFactory $entityFactory;
 

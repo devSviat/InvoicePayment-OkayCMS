@@ -21,11 +21,11 @@ class Init extends AbstractInit
         $this->setBackendMainController('DescriptionAdmin');
 
         $this->migrateEntityTable(InvoicePaymentDataEntity::class, [
-            (new EntityField('id'))->setIndexPrimaryKey()->setTypeInt(11, false)->setAutoIncrement(),
-            (new EntityField('order_id'))->setTypeInt(11)->setIndexUnique(),
-            (new EntityField('edrpou'))->setTypeVarchar(20),
-            (new EntityField('company_name'))->setTypeVarchar(500),
-            (new EntityField('paid'))->setTypeTinyInt(1, true),
+            new EntityField('id')->setIndexPrimaryKey()->setTypeInt(11, false)->setAutoIncrement(),
+            new EntityField('order_id')->setTypeInt(11)->setIndexUnique(),
+            new EntityField('edrpou')->setTypeVarchar(20),
+            new EntityField('company_name')->setTypeVarchar(500),
+            new EntityField('paid')->setTypeTinyInt(1, true),
         ]);
     }
 

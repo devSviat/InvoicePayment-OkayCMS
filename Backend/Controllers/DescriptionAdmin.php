@@ -6,9 +6,9 @@ use Okay\Admin\Controllers\IndexAdmin;
 
 class DescriptionAdmin extends IndexAdmin
 {
-    private const SETTING_PREFIX = 'sviat__invoice_payment__';
+    private const string SETTING_PREFIX = 'sviat__invoice_payment__';
 
-    private const INVOICE_SETTING_KEYS = [
+    private const array INVOICE_SETTING_KEYS = [
         'supplier_type',
         'supplier_name',
         'supplier_bank_account',

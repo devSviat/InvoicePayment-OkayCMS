@@ -6,7 +6,7 @@ use Okay\Controllers\AbstractController;
 
 class CompanyByEdrpouController extends AbstractController
 {
-    private const API_URL = 'https://adm.tools/action/gov/api/?egrpou=%s';
+    private const string API_URL = 'https://adm.tools/action/gov/api/?egrpou=%s';
 
     public function getCompany()
     {

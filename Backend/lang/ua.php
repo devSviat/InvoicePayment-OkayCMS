@@ -1,7 +1,7 @@
 <?php
 
 $lang['sviat__invoice_payment__title'] = 'Оплата для юридичних осіб (розрахунковий рахунок)';
-$lang['sviat__invoice_payment__description'] = 'При виборі цього способу оплати клієнт заповнює код ЄДРПОУ та повну назву юридичної особи. Дані зберігаються в замовленні.';
+$lang['sviat__invoice_payment__description'] = 'Якщо обрано цей спосіб оплати, клієнт заповнює код ЄДРПОУ та повну назву юридичної особи. Дані зберігаються в замовленні.';
 $lang['sviat__invoice_payment__edrpou'] = 'Код ЄДРПОУ';
 $lang['sviat__invoice_payment__company_name'] = 'Повна назва юридичної особи';
 $lang['sviat__invoice_payment__invoice_paid'] = 'Рахунок сплачено';

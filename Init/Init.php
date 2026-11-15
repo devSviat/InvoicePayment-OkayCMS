@@ -46,7 +46,7 @@ class Init extends AbstractInit
             [FrontExtender::class, 'extendFinalCreateOrderProcedure']
         );
 
-        $this->registerQueueExtension(
+        $this->registerChainExtension(
             [ValidateHelper::class, 'getCartValidateError'],
             [FrontExtender::class, 'extendGetCartValidateError']
         );

@@ -60,19 +60,27 @@ class FrontExtender implements ExtensionInterface
         $this->saveInvoicePaymentData((int) $order->id, $data['edrpou'], $data['company_name']);
     }
 
+    /**
+     * Ланка ланцюжка: результат ланки черги ядро відкидає. Без помилки віддає null, бо ланки далі
+     * в ланцюжку вважають «помилки немає» лише null.
+     */
     public function extendGetCartValidateError($error, $order)
     {
-        if ($error || !$this->getPaymentMethodIfInvoice($order)) {
+        if ($error !== null && $error !== '') {
             return $error;
         }
+        if (!$this->getPaymentMethodIfInvoice($order)) {
+            return null;
+        }
         $data = $this->getPostInvoiceData();
+        // Тема друкує помилку як є, а порожня означала б, що перевірку пройдено: без перекладу лишається ключ.
         if ($data['edrpou'] === '') {
-            return $this->frontTranslations->getTranslation('sviat__invoice_payment__error_edrpou');
+            return $this->frontTranslations->getTranslation('sviat__invoice_payment__error_edrpou') ?: 'sviat__invoice_payment__error_edrpou';
         }
         if ($data['company_name'] === '') {
-            return $this->frontTranslations->getTranslation('sviat__invoice_payment__error_company_name');
+            return $this->frontTranslations->getTranslation('sviat__invoice_payment__error_company_name') ?: 'sviat__invoice_payment__error_company_name';
         }
-        return $error;
+        return null;
     }
 
     public function extendOrderControllerRender($result, ...$args)
